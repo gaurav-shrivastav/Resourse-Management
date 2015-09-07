@@ -1,0 +1,103 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+   
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+   
+    <?php if(empty($this->ids)){?>
+	var x = 1;		
+	<?php }
+	else { 
+?>
+	var x = <?php echo count($this->ids);
+	}
+			?>	
+	 //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+         //max input box allowed
+		   var i=2;
+            //text box increment
+           x++; 
+		   $(wrapper).append('<div id ="box-'+x+'"><br /><input type="textbox"  name="deliverables[]">&nbsp&nbsp<input type="textbox"  name="achievement[]">&nbsp&nbsp<input type="textbox"  name="selfscore[]">&nbsp&nbsp<a href="#" id="cancel-'+x+'" class="remove_field">Remove</a></div>'); //add input box
+			
+    });
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); 
+		var temp = $(this).attr('id').split("-");
+		var id = temp[1];
+		$('#box-'+id).remove();
+		//$('#temp').remove();
+		//$(this).parent('div').remove(); 
+    })
+});
+
+</script>
+</head>
+<?php
+if(!empty($this->form)){
+	$this->form->setAction($this->url());
+	echo $this->form->renderForm(false);
+?>
+<p>Name of the Employee:<?php echo $this->emp_name?></p>
+<p>Employee Code:<?php echo $this->emp_code?></p>
+<p>Report Head:<?php echo $this->reportHead?></p>
+
+
+<?php echo $this->form->department;?>
+<h2>A:Key Deliverables</h2>	
+
+<div class="input_fields_wrap">
+    <button class="add_field_button">Add More Fields</button>
+<?php
+$temp = 1;
+$updateIds = array();
+if(empty($this->ids)){
+?>
+	<div id = "box-0">	
+	   <br><input type="textbox"  name="deliverables[]">&nbsp
+		   <input type="textbox" name="achievement[]">&nbsp
+		   <input type="textbox"  name="selfscore[]">&nbsp
+		   <a href="#" id="cancel-0" class="remove_field">Remove</a>
+	</div>
+	
+<?php
+}
+else {
+ $k = count($this->ids);
+foreach($this->ids as $t) {
+?>
+    <div id ="box-<?php echo $temp;?>">
+	   <br><input type="textbox"  name="deliverables[]" value="<?php echo $t['keyDeliverables'];?>">&nbsp
+	   <input type="textbox"  name="achievement[]" value="<?php echo $t['achieventLevel'];?>">&nbsp
+	   <input type="textbox" name="selfscore[]"  value="<?php echo $t['selfScore'];?>">&nbsp
+	   <a href="#" id="cancel-<?php echo $temp;?>" class="remove_field">Remove</a>
+	</div>
+
+<?php 
+ $updateIds[] = $t['id'];
+ $temp++;
+	}
+}
+?>
+<input type="hidden" name="ids" value = "<?php print_r($updateIds);?>">
+</div>
+<h2>B:Qualitative Improvements</h2>	
+<p>Please list points that you believe you have helped improve in systems and processes in your team / function Company.  List all major achievements beyond one's 
+mentioned above</p>
+<?php
+echo $this->form->Improvement->setOptions(array('cols' => '15', 'rows' => '1'));	
+?>
+<h2>C:Self Development:</h2>	
+<p>If you have any requirement in terms of training / job rotation / change of team / infrastructure, etc. Please list and we shall try and accommodate your request as 
+much as possible</p>
+<?php
+echo $this->form->self_development->setOptions(array('cols' => '15', 'rows' => '1'));	
+echo $this->form->save;
+?>
+<a href ="/user/status?empid=<?php echo $this->emp_id;?>" ><input type="button" name="Submit" value= "Submit"></a>
+<?php }?>
+
+ 

@@ -1,0 +1,62 @@
+<html>
+
+	<table border=1   cellpadding="20" width =50%  align=center>
+		<tr>   
+			<td>Name of the Employee</td><td><?php echo $this->empnane;?> </td>	
+		</tr>	
+		<tr>	
+			<td>Employee Code</td><td><?php echo $this->empcode;?> </td>	
+		</tr>
+		<tr>	
+			<td>Department</td><td><?php echo $this->department;?> </td>	
+		</tr>
+		<tr>	
+			<td>Reporting Head</td><td><?php echo $this->head;?> </td>	
+		</tr>
+	</table>
+<p>A : Key Deliverables</p>
+	<table border=1  cellpadding="20" width =50%  align=center> 
+		<tr>
+			<th>S.No</th><th>Key Deliverables<th>Achievement Level(%)</th><th>Self-Score out of 10</th>
+			<th>Appraiser's comments</th>
+		</tr>
+	<form action="/user/addcomment" method="post" name=comment >
+<?php
+$i = 1; 
+foreach($this->deliver as $d) {  ?>		
+		
+		<tr>	
+			<td><?php echo $i++;?></td>
+			<td><?php echo $d['keyDeliverables']?></td><td><?php echo $d['achieventLevel']?></td><td><?php echo $d['selfScore']?></td>
+			<td><input type="text"  name="a_comment[]"> 
+				<input type="hidden" name="ac_id[]" value="<?php echo $d['id']?>">	
+			</td>	
+		</tr>
+<?php } ?>		
+	</table>
+<p>B : Qualitative Improvements</p>	
+	<table border=1  cellpadding="10" width =50%  align=center>
+		<tr>
+			<td><?php echo $this->Improvement ?></td>
+			<td><input type="text"  name="b_comment">
+				<input type="hidden" name="bc_id" value="<?php echo $this->id_imp;?>">	
+			</td>
+		</tr>
+	
+	</table>	
+	
+<p>C : Self Development </p>	
+	<table border=1 cellpadding="10" width =50%  align=center>
+		<tr>
+			<td><?php echo $this->self_development ?></td>
+			<td><input type="text"  name="c_comment">
+			<input type="hidden" name="cc_id" value="<?php echo $this->id_dep;?>">	
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 cellpadding="10" align=center><input type="submit" name=submit value ="Submit"></td>
+		</tr>
+	</table>		
+		
+	</form>		
+</html>

@@ -1,0 +1,34 @@
+<html>
+<h1 align =center>Employees Details</h1>
+<table align=center border=2>
+	<tr>
+		<th>S.No</th>
+		<th>Employee ID</th>
+		<th>Name</th>
+		<th>Email ID</th>
+		<th>Designation</th>
+		<th>Date of Join</th>
+		<th>Employee Code</th>
+		<th>Option</th>
+	
+	</tr>
+<?php
+$i=1;
+foreach($this->valid as $v) {
+
+?>
+	<tr>
+		<td><?php echo $i++?> </td>
+		<td><?php echo $v['empId']?> </td>
+		<td><?php echo $v['empName']?> </td>
+		<td><?php echo $v['email']?> </td>
+		<td><?php echo $v['designation']?> </td>
+		<td><?php echo $v['dateOfJoin']?> </td>
+		<td><?php echo $v['employeeCode']?> </td>
+		<td><a href="/user/comment?empid=<?php echo $v['empId'];?>">Comment Form</a> </td>
+	</tr>
+<?php
+ }
+?>	
+<table>
+</html>
