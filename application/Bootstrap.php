@@ -10,6 +10,13 @@ use   Doctrine\Common\Cache\ArrayCache as DoctrineArrayCache;
 	
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
+ protected function _initAppAutoload()
+   {
+       $autoloader = new Zend_Application_Module_Autoloader(array('namespace'=>'', 'basePath'=>dirname(__FILE__)));
+       $loader = Zend_Loader_Autoloader::getInstance();
+       $loader->suppressNotFoundWarnings(true);
+       return $autoloader;
+   } 
     public function _initClassLoaders()
     {
         $loader = new ClassLoader('Doctrine\ORM');

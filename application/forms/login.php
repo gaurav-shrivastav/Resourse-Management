@@ -4,27 +4,28 @@ class Application_Form_Login extends Zend_Form
 	public function init()
     {
 		$this->setMethod('post');
+		$this->setAttrib('class','loginForm');
 		$this->addElement('text','username',array(
-			'label'  => 'username:',
+			'label'  => 'Username:',
             'required'   => true,
             'filters'    => array('StringTrim'),
 			'validators' => array('Alpha'),
-			'class'	 =>'user',
+			'class'	 =>'form-control',
 			'placeholder' => 'Username',
 
 		));
 		$this->addElement('password','password',array(
-			'label'  => 'password:',
+			'label'  => 'Password:',
             'required'   => true,
             'filters'    => array('StringTrim'),
             'validators' => array('NotEmpty'),
-			'class'	 =>'pass',
+			'class'	 =>'form-control',
 			'placeholder' => 'Password',	
 		));	
 		    $this->addElement('submit', 'submit', array(
             'ignore'   => true,
             'label'    => 'Login',
-			'class'  => 'button' 
+			'class'  => array('btn btn-success','pull-right') 
         ));
 	}
 }

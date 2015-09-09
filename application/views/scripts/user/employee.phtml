@@ -29,32 +29,30 @@ $(document).ready(function() {
 		var temp = $(this).attr('id').split("-");
 		var id = temp[1];
 		$('#box-'+id).remove();
-		//$('#temp').remove();
-		//$(this).parent('div').remove(); 
     })
 });
 
 </script>
 </head>
 <?php
-if(!empty($this->form)){
-	$this->form->setAction($this->url());
-	echo $this->form->renderForm(false);
-?>
-<p>Name of the Employee:<?php echo $this->emp_name?></p>
-<p>Employee Code:<?php echo $this->emp_code?></p>
-<p>Report Head:<?php echo $this->reportHead?></p>
+	if(!empty($this->form)) {
+		$this->form->setAction($this->url());
+		echo $this->form->renderForm(false);
+	?>
+<table class="table table-striped">
+	<tr><td>Name of the Employee</td> <td><?php echo $this->emp_name?></td></tr>
+	<tr><td>Employee Code</td> <td><?php echo $this->emp_code?></td></tr>
+	<tr><td>Report Head</td><td><?php echo $this->reportHead?></td></tr>
 
-
-<?php echo $this->form->department;?>
+	 <tr><td><?php echo $this->form->department;?></td></tr>
+</table>
 <h2>A:Key Deliverables</h2>	
 
 <div class="input_fields_wrap">
-    <button class="add_field_button">Add More Fields</button>
+    <button class="add_field_button btn btn-primary ">Add More Fields</button>
 <?php
 $temp = 1;
-$updateIds = array();
-if(empty($this->ids)){
+if(empty($this->ids)) {
 ?>
 	<div id = "box-0">	
 	   <br><input type="textbox"  name="deliverables[]">&nbsp
@@ -66,23 +64,22 @@ if(empty($this->ids)){
 <?php
 }
 else {
- $k = count($this->ids);
-foreach($this->ids as $t) {
+	 $k = count($this->ids);
+	foreach($this->ids as $t) {
 ?>
-    <div id ="box-<?php echo $temp;?>">
-	   <br><input type="textbox"  name="deliverables[]" value="<?php echo $t['keyDeliverables'];?>">&nbsp
-	   <input type="textbox"  name="achievement[]" value="<?php echo $t['achieventLevel'];?>">&nbsp
-	   <input type="textbox" name="selfscore[]"  value="<?php echo $t['selfScore'];?>">&nbsp
+    <div id ="box-<?php echo $temp;?>" >
+	   <br><input type="textbox" name="deliverables[]" value="<?php echo $t['keyDeliverables'];?>">&nbsp
+	   <input type="textbox" name="achievement[]" value="<?php echo $t['achieventLevel'];?>">&nbsp
+	   <input type="textbox"  name="selfscore[]"  value="<?php echo $t['selfScore'];?>">&nbsp
+	   <input type="hidden"  name="ids[]" value="<?php echo $t['id'];?>">
 	   <a href="#" id="cancel-<?php echo $temp;?>" class="remove_field">Remove</a>
 	</div>
 
 <?php 
- $updateIds[] = $t['id'];
- $temp++;
-	}
+	 $temp++;
+	 }
 }
 ?>
-<input type="hidden" name="ids" value = "<?php print_r($updateIds);?>">
 </div>
 <h2>B:Qualitative Improvements</h2>	
 <p>Please list points that you believe you have helped improve in systems and processes in your team / function Company.  List all major achievements beyond one's 
@@ -97,7 +94,14 @@ much as possible</p>
 echo $this->form->self_development->setOptions(array('cols' => '15', 'rows' => '1'));	
 echo $this->form->save;
 ?>
-<a href ="/user/status?empid=<?php echo $this->emp_id;?>" ><input type="button" name="Submit" value= "Submit"></a>
-<?php }?>
+   <a href ="/user/status?empid=<?php echo $this->emp_id;?>"><input type="button" class="btn btn-danger" name="Submit" value= "Submit"></a>
+<?php 
+echo $this->form->formid;
+echo $this->form->id_imp;
+echo $this->form->id_dep;
+}?>
+
+
+
 
  

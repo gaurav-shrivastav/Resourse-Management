@@ -1,6 +1,5 @@
 <html>
-
-	<table border=1   cellpadding="20" width =50%  align=center>
+	<table class="table table-striped">
 		<tr>   
 			<td>Name of the Employee</td><td><?php echo $this->empnane;?> </td>	
 		</tr>	
@@ -14,8 +13,9 @@
 			<td>Reporting Head</td><td><?php echo $this->head;?> </td>	
 		</tr>
 	</table>
-<p>A : Key Deliverables</p>
-	<table border=1  cellpadding="20" width =50%  align=center> 
+<strong>A : Key Deliverables</strong>
+<p>Please list out the five key deliverables which you have delivered</p>
+	<table border=1  cellpadding="20" width =50%  align=center class="table table-striped text-center"> 
 		<tr>
 			<th>S.No</th><th>Key Deliverables<th>Achievement Level(%)</th><th>Self-Score out of 10</th>
 			<th>Appraiser's comments</th>
@@ -28,33 +28,37 @@ foreach($this->deliver as $d) {  ?>
 		<tr>	
 			<td><?php echo $i++;?></td>
 			<td><?php echo $d['keyDeliverables']?></td><td><?php echo $d['achieventLevel']?></td><td><?php echo $d['selfScore']?></td>
-			<td><input type="text"  name="a_comment[]"> 
+			<td><input type="text" class='form-control' name="a_comment[]"> 
 				<input type="hidden" name="ac_id[]" value="<?php echo $d['id']?>">	
 			</td>	
 		</tr>
 <?php } ?>		
 	</table>
-<p>B : Qualitative Improvements</p>	
-	<table border=1  cellpadding="10" width =50%  align=center>
+<strong>B : Qualitative Improvements</strong>
+<p>Please list points that you believe you have helped improve in systems and processes in your team / function Company.  
+List all major achievements beyond one's mentioned above</p>	
+	<table class="table table-striped ">
 		<tr>
 			<td><?php echo $this->Improvement ?></td>
-			<td><input type="text"  name="b_comment">
+			<td>Comment <input type="text" class='form-control' name="b_comment">
 				<input type="hidden" name="bc_id" value="<?php echo $this->id_imp;?>">	
 			</td>
 		</tr>
 	
 	</table>	
 	
-<p>C : Self Development </p>	
-	<table border=1 cellpadding="10" width =50%  align=center>
+<strong>C : Self Development </strong>
+<p>If you have any requirement in terms of training / job rotation / change of team / infrastructure, etc. 
+Please list and we shall try and accommodate your request as much as possible</p>	
+	<table class="table table-striped">
 		<tr>
 			<td><?php echo $this->self_development ?></td>
-			<td><input type="text"  name="c_comment">
+			<td>Comment <input type="text" class='form-control container-fluid' name="c_comment">
 			<input type="hidden" name="cc_id" value="<?php echo $this->id_dep;?>">	
 			</td>
 		</tr>
 		<tr>
-			<td colspan=2 cellpadding="10" align=center><input type="submit" name=submit value ="Submit"></td>
+			<td colspan=2 cellpadding="10" align=center><input class="btn btn-success" type="submit" name=submit value ="Submit"></td>
 		</tr>
 	</table>		
 		

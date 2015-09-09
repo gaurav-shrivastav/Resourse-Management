@@ -1,0 +1,10 @@
+<div id="header">
+<?php
+$session = new Zend_Session_Namespace();
+if(isset($session->username)) {	
+?>
+<a href="/login/logout"><input type="button"  class="btn btn-info pull-right" value="Logout"></a>
+<?php 
+}?>
+    <h1 class ="text-center page-header">Appraisal Form</h1> 
+</div>

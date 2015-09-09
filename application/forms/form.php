@@ -4,15 +4,19 @@ class Application_Form_Form extends Zend_Form
 	public function init()
     {
 		$this->setMethod('post');
+		//$this->setDefaultDisplayGroupClass('form');
 		$this->addElement('text','department',array(
 			'label'  => 'Department:',
             'required'   => true,
             'filters'    => array('StringTrim'),
 			'validators' => array('Alpha'),
-			'class'	 =>'department',
+			'class'	 => array('form-control','span4'),
+			'placeholder' => 'Department',
+			
 		));
 		
-		$this->addElement('textarea','deliverable',array(
+		
+		/*$this->addElement('textarea','deliverable',array(
 			'label'  => 'Key Deliverables:',
             'required'   => true,
             'filters'    => array('StringTrim'),
@@ -32,26 +36,26 @@ class Application_Form_Form extends Zend_Form
             'filters'    => array('StringTrim'),
 			'validators' => array('Digits'),
 			'class'	 =>'self_socre',
-		));
+		));*/
 		
 		$this->addElement('textarea','Improvement',array(
 			'label'  => 'Qualitative Improvements:',
             'required'   => true,
             'filters'    => array('StringTrim'),
 			'validators' => array('Alpha'),
-			'class'	 =>'Improvement',
+			'class'	 =>'form-control',
 		));
 		$this->addElement('textarea','self_development',array(
-			'label'  => 'Qualitative Improvements:',
+			'label'  => 'Self Development:',
             'required'   => true,
             'filters'    => array('StringTrim'),
 			'validators' => array('Alpha'),
-			'class'	 =>'self_development',
+			'class'	 => array('form-control','center-block'),
 		));
 		$this->addElement('submit','save', array(
             'ignore'   => true,
             'label'    => 'Save',
-			'class'  => 'save',	
+			'class'  => 'btn btn-warning',	
 			));
 		
 		

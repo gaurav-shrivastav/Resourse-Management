@@ -1,6 +1,6 @@
 <html>
 <h1 align =center>Employees Details</h1>
-<table align=center border=2>
+<table class="table table-striped table table-hover">
 	<tr>
 		<th>S.No</th>
 		<th>Employee ID</th>
@@ -14,9 +14,7 @@
 	</tr>
 <?php
 $i=1;
-foreach($this->valid as $v) {
-
-?>
+foreach($this->valid as $v) { ?>
 	<tr>
 		<td><?php echo $i++?> </td>
 		<td><?php echo $v['empId']?> </td>
@@ -28,7 +26,7 @@ foreach($this->valid as $v) {
 		<td><a href="/user/comment?empid=<?php echo $v['empId'];?>">Comment Form</a> </td>
 	</tr>
 <?php
- }
+}
 ?>	
 <table>
 </html>
